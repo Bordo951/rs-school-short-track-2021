@@ -14,8 +14,18 @@
  *
  * The result should be 9
  */
-function getMatrixElementsSum(/* matrix */) {
-  throw new Error('Not implemented');
+function getMatrixElementsSum(matrix) {
+  const matrixNew = matrix;
+  let matrixConcat = [];
+  for (let i = 0; i < matrixNew.length; i++) {
+    for (let j = 0; j < matrixNew[0].length; j++) {
+      if (matrixNew[i][j] === 0 && typeof matrix[i + 1] !== 'undefined') {
+        matrixNew[i + 1][j] = 0;
+      }
+    }
+  }
+  matrixConcat = matrixNew.reduce((accumulator, currentValue) => accumulator.concat(currentValue));
+  return matrixConcat.reduce((accumulator, currentValue) => accumulator + currentValue);
 }
 
 module.exports = getMatrixElementsSum;
